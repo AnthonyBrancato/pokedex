@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.scss";
+
+import { List } from "components";
+
+const API_ENDPOINT = "https://pokeapi.co/api/v2/pokemon/";
+
+
+const searchPokemons = () => console.log('search pokemon')
 
 function App() {
+
+  const [pokemons, setPokemons] = React.useState([])
+  const [isLoading, setIsLoading] = React.useState(false)
+  const [isError, setIsError] = React.useState(false)
+
+  React.useEffect(() => {
+    fetch()
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>My pokedex</h1>
+      <hr />
+
+      <List />
     </div>
   );
 }
