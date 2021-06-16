@@ -1,5 +1,10 @@
-const Item = () => {
-  return <div>Item component</div>;
+const Item = ({item}) => {
+  return (
+    <div>
+      <span>{item.name}</span>
+      <span>{item.url}</span>
+    </div>
+  );
 };
 
 export default Item;
