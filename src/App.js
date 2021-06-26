@@ -1,11 +1,9 @@
 import React from "react";
 import "./App.scss";
 
-import { List } from "components";
+import { List, IsLoading } from "components";
 
 import { pokemonsReducer } from "reducers";
-
-const API_ENDPOINT = "https://pokeapi.co/api/v2/pokemon/";
 
 function App() {
   const [pokemons, dispatchPokemons] = React.useReducer(pokemonsReducer, {
@@ -15,17 +13,26 @@ function App() {
   });
 
   React.useEffect(() => {
-    dispatchPokemons({ type: "FETCH_POKEMON_INIT" });
+    dispatchPokemons({
+      type: "FETCH_POKEMON_INIT",
+    });
 
-    fetch(API_ENDPOINT)
-      .then((response) => response.json())
-      .then((pokemons) => {
+    fetch("./pokemons.json", {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+    })
+      .then((res) => { return res.json() })
+      .then((data) => {
         dispatchPokemons({
           type: "FETCH_POKEMON_SUCCESS",
-          payload: pokemons.results,
+          payload: data,
         });
       })
-      .catch(() => dispatchPokemons({ type: "FETCH_POKEMON_FAILURE" }));
+      .catch(() => {
+        dispatchPokemons({ type: "FETCH_POKEMON_FAILURE" });
+      });
   }, []);
 
   return (
@@ -33,9 +40,11 @@ function App() {
       <h1>My pokedex</h1>
       <hr />
 
-      {pokemons.isError && <p>Something went wrong</p>}
+      <div className="container">
+        {pokemons.isError && <p>Something went wrong</p>}
 
-      {pokemons.isLoading ? <p>Loading...</p> : <List list={pokemons.data} />}
+        {pokemons.isLoading ? <IsLoading /> : <List list={pokemons.data} />}
+      </div>
     </div>
   );
 }

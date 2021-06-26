@@ -1,3 +1,10 @@
 .App {
-  text-align: center;
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    background-image: url('./assets/backgrounds/sprinkle.svg');
+  }
 }

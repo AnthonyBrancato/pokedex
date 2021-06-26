@@ -1,0 +1,17 @@
+.item-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 200px;
+
+  padding: 5%;
+
+
+  .item-image {
+    img {
+      max-width: 100%;
+      height: auto;
+      box-sizing: border-box;
+    }
+  }
+}
