@@ -1,17 +1,28 @@
-.item-card {
+@import url("styles/fonts.css");
+
+.item-wrapper {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  flex: 0 0 200px;
-
-  padding: 5%;
 
 
-  .item-image {
-    img {
-      max-width: 100%;
-      height: auto;
-      box-sizing: border-box;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  width: 200px;
+  margin-bottom: 2%;
+
+  .item-card {
+
+    .item-image {
+      img {
+        max-width: 100%;
+        height: auto;
+        box-sizing: border-box;
+      }
+    }
+
+    .item-info {
+      font-family: 'Montserrat', sans-serif;
     }
   }
 }
